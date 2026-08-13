@@ -1,7 +1,7 @@
 # claude-skills
 
-My agent skills, kept in one repo and symlinked into `~/.claude/skills` on every
-machine I work on. Works with Claude Code, and with any agent that reads
+My agent skills, in one repo, symlinked into `~/.claude/skills` on every machine
+I work on. Built for Claude Code; works with any agent that reads
 `~/.agents/skills`.
 
 ## Install
@@ -12,28 +12,26 @@ cd claude-skills
 ./install.sh
 ```
 
-That symlinks every directory in `skills/` into `~/.claude/skills` (and into
-`~/.agents/skills` if that directory exists). Run `./install.sh --dry-run` first
-if you want to see what it will touch - it replaces any real directory of the
-same name.
+Symlinks every directory in `skills/` into `~/.claude/skills`, and into
+`~/.agents/skills` if it exists. It replaces any real directory of the same
+name, so run `./install.sh --dry-run` first to see what it touches.
 
-Because the installed skills are symlinks, editing
-`~/.claude/skills/grilling/SKILL.md` edits this repo. Commit and push to sync
-the change everywhere.
+The installed skills are symlinks, so editing
+`~/.claude/skills/grilling/SKILL.md` edits this repo. Commit and push to sync.
 
 ## Staying in sync
 
 ```bash
-git pull      # on the other machine; symlinks pick up the change immediately
+git pull      # symlinks pick up the change immediately
 ```
 
-New skills added to `skills/` need one `./install.sh` re-run to get linked.
+A new skill in `skills/` needs one `./install.sh` re-run to get linked.
 
-## What's here
+## Skills
 
 ### Grilling
 
-A relentless interview that stress-tests a plan before you build it.
+An interview that stress-tests a plan before you build it.
 
 | Skill | Invoke |
 |---|---|
@@ -41,14 +39,14 @@ A relentless interview that stress-tests a plan before you build it.
 | `grill-me` | `/grill-me` - grilling, no docs written |
 | `grill-with-docs` | `/grill-with-docs` - grilling that writes ADRs and a glossary as it goes |
 
-`grill-with-docs` pulls in `domain-modeling`; `grilling` reaches for `prototype`
-when a question is better answered by throwaway code than by more talking.
+`grill-with-docs` pulls in `domain-modeling`. `grilling` reaches for `prototype`
+when throwaway code answers a question faster than more talking.
 
 ### Engineering
 
 | Skill | What it does |
 |---|---|
-| `domain-modeling` | Builds `CONTEXT.md` and ADRs - ubiquitous language for the project |
+| `domain-modeling` | Writes `CONTEXT.md` and ADRs - the project's ubiquitous language |
 | `tdd` | Red-green-refactor, plus what makes a test worth keeping |
 | `codebase-design` | Deep-module vocabulary: interfaces, seams, depth, leverage |
 | `prototype` | Throwaway code that answers one design question |
@@ -57,7 +55,7 @@ when a question is better answered by throwaway code than by more talking.
 
 | Skill | What it does |
 |---|---|
-| `hemingway` | Two-pass editor: strip AI tells, then cut every word that isn't working |
+| `hemingway` | Two passes: strip AI tells, then cut what isn't working |
 | `writing-for-agents` | How to write skills, `AGENTS.md`, `CLAUDE.md` |
 | `writing-fragments` | Explore - mine raw material, no structure yet |
 | `writing-shape` | Exploit - shape the pile into an article, paragraph by paragraph |
@@ -72,7 +70,7 @@ when a question is better answered by throwaway code than by more talking.
 
 ## Updating the vendored skills
 
-Most of these come from [mattpocock/skills](https://github.com/mattpocock/skills)
+Thirteen of these come from [mattpocock/skills](https://github.com/mattpocock/skills)
 (MIT - see [NOTICE](./NOTICE)). They are vendored, not submoduled, so upstream
 fixes are a manual pull:
 
@@ -80,11 +78,11 @@ fixes are a manual pull:
 git clone --depth 1 https://github.com/mattpocock/skills /tmp/mp-skills
 # copy the ones you track over skills/<name>, drop each skill's agents/ dir,
 # then update the commit sha in skills/UPSTREAM
-git diff    # review before committing - you may have local edits worth keeping
+git diff    # review first - you may have local edits worth keeping
 ```
 
-If you'd rather have all of Matt's skills and automatic updates instead of this
-curated subset, use his plugin: `claude plugins install mattpocock-skills`.
+For all of Matt's skills with automatic updates, use his plugin instead:
+`claude plugins install mattpocock-skills`.
 
 ## License
 
