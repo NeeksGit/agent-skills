@@ -1,4 +1,4 @@
-# claude-skills
+# agent-skills
 
 My agent skills, in one repo, symlinked into `~/.claude/skills` on every machine
 I work on. Built for Claude Code; works with any agent that reads
@@ -7,8 +7,8 @@ I work on. Built for Claude Code; works with any agent that reads
 ## Install
 
 ```bash
-git clone https://github.com/NeeksGit/claude-skills.git
-cd claude-skills
+git clone https://github.com/NeeksGit/agent-skills.git
+cd agent-skills
 ./install.sh
 ```
 
